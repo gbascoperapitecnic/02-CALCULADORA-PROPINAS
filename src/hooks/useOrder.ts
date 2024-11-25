@@ -25,19 +25,29 @@ export default function useOrder(){
     }
 
     // Eliminar orden de lista consumo
-    const removeItem = (id:number) => {
+    const removeItem = (id:itemMenu["id"]) => {
         // console.log("eliminando")
         //filtrar array order, excluyendo item seleccionado y volver a setear el array 
         const arrayFiltered = order.filter((item) => item.id !== id)
         setOrder(arrayFiltered)
     }
 
-    console.log(order)
+    // funcion para calcular total, subtotal, propina...
+
+    const calcSubtotal = () => {
+        const sumTotal = order.reduce((total, item) => total + item.price * item.quantity, 0)
+        return sumTotal
+    }
+
+    // const calcTip = () =>{
+    //     return calcSubtotal() * 
+    // }
 
     // retornamos un objeto
     return{
         order,
         addItem,
-        removeItem
+        removeItem,
+        calcSubtotal
     }
 }

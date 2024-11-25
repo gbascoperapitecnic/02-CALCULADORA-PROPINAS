@@ -1,10 +1,10 @@
 // import useOrder from "../hooks/useOrder"
 import { formatCurrency } from "../helpers"
-import { OrderItem } from "../types"
+import { itemMenu, OrderItem } from "../types"
 
 type OrderContentsProps = {
     order: OrderItem[]
-    removeItem: (id:number) => void
+    removeItem: (id:itemMenu["id"]) => void
 }
 
 export default function OrderContents({order, removeItem} : OrderContentsProps) {
