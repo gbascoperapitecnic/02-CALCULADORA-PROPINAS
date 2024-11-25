@@ -24,11 +24,20 @@ export default function useOrder(){
 
     }
 
+    // Eliminar orden de lista consumo
+    const removeItem = (id:number) => {
+        // console.log("eliminando")
+        //filtrar array order, excluyendo item seleccionado y volver a setear el array 
+        const arrayFiltered = order.filter((item) => item.id !== id)
+        setOrder(arrayFiltered)
+    }
+
     console.log(order)
 
     // retornamos un objeto
     return{
         order,
-        addItem
+        addItem,
+        removeItem
     }
 }
