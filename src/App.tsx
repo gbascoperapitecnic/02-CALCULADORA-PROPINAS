@@ -7,7 +7,9 @@ import TipPercentageForm from "./components/TipPercentageForm"
 
 function App() {
 
-  const {order, addItem, removeItem, calcSubtotal} = useOrder()
+  const {order, tip, setTip, addItem, removeItem, calcSubtotal, placeOrder} = useOrder()
+  //state derivado
+  const isEmpty = order.length === 0
 
   return (
     <>
@@ -30,17 +32,29 @@ function App() {
         </div>
 
         <div className="border border-gray-100 rounded-md p-5">
-          <OrderContents
-            order={order}
-            removeItem={removeItem}
-          />
+         <h2 className="text-3xl font-medium">Consumo</h2>
+          {isEmpty ? (
+            <div className="p-3 flex h-full items-center justify-center font-light text-xl">No hay ordenes a procesar.</div>
+          ) : (
+            <>
+              <OrderContents
+                order={order}
+                removeItem={removeItem}
+              />
 
-          <TipPercentageForm />
+              <TipPercentageForm
+                tip={tip}
+                setTip={setTip}
+              />
+    
+              <OrderTotals 
+                calcSubtotal={calcSubtotal}
+                tip={tip}
+                placeOrder={placeOrder}
+              />
+            </>
+          )}
 
-          <OrderTotals 
-            order={order}
-            calcSubtotal={calcSubtotal}
-          />
 
         </div>
 

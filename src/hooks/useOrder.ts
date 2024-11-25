@@ -3,6 +3,7 @@ import type { itemMenu, OrderItem } from "../types";
 
 export default function useOrder(){
     const [order, setOrder] = useState<OrderItem[]>([])
+    const [tip, setTip] = useState(0)
 
     //funcion para añadir orden
     const addItem = (item: itemMenu) => {
@@ -39,15 +40,18 @@ export default function useOrder(){
         return sumTotal
     }
 
-    // const calcTip = () =>{
-    //     return calcSubtotal() * 
-    // }
-
+    const placeOrder = () =>{
+        setOrder([])
+        setTip(0)
+    }
     // retornamos un objeto
     return{
         order,
+        tip, 
+        setTip,
         addItem,
         removeItem,
-        calcSubtotal
+        calcSubtotal,
+        placeOrder
     }
 }
